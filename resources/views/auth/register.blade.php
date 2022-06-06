@@ -61,6 +61,14 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label for="refer" class="col-md-4 col-form-label text-md-end">{{ __('Referral Code') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="refer" type="text" class="form-control" name="refer" value="{{ Request::input('refer') }}" autocomplete="refer" autofocus>
+                            </div>
+                        </div>
+
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
