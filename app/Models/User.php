@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Traits\HasUUID;
 use App\Models\Referral;
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,7 +16,6 @@ class User extends Authenticatable
     use HasFactory;
     use Notifiable;
     use HasUUID;
-    use HasApiTokens;
 
     /**
      * The attributes that are mass assignable.

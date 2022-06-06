@@ -45,6 +45,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('home');
     Route::get('/referrals', [App\Http\Controllers\ReferralController::class, 'referrals'])
         ->name('referrals');
+    Route::post('/submit-referral', [App\Http\Controllers\ReferralController::class, 'submitReferral'])
+        ->name('submit-referrals');
 });
 
 

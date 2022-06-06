@@ -38,32 +38,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-    /**
-     * The user has been authenticated.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
-     * @return mixed
-     */
-    protected function authenticated(Request $request, $user)
-    {
-        // Create access token for the user
-        $accessToken = $user->createToken('auth_token')->plainTextToken;
-
-        // Save access token via the global "session" helper
-        $request->session()->put('access_token', $accessToken);
-    }
-
-    /**
-     * The user has logged out of the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return mixed
-     */
-    protected function loggedOut(Request $request)
-    {
-        // delete access token via the global "session" helper
-        $request->session()->forget('access_token');
-    }
 }
