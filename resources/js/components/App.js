@@ -5,6 +5,7 @@ import axios from 'axios';
 function App(props) {
     const [emails, setEmails] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
 
     function handleKeyDown(e) {
         if (e.key !== 'Enter') {
@@ -50,7 +51,8 @@ function App(props) {
         axios.post('/submit-referral', bodyParameters).then(
             response => {
                 if (response.data.status == "ok") {
-                    emails = [];
+                    setEmails([]);
+                    setSuccessMessage("Success sent invitations");
                 } else {
                     setErrorMessage(response.data.message);
                 }
@@ -98,6 +100,7 @@ function App(props) {
                             <div className="row">
                                 <div className="col-sm-8 offset-sm-2">
                                     <span className="text-danger">{errorMessage}</span>
+                                    <span className="text-success">{successMessage}</span>
                                 </div>
                             </div>
                         </div>

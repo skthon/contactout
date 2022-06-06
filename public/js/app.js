@@ -5350,8 +5350,6 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-only"); }
-
 
 
 
@@ -5368,6 +5366,11 @@ function App(props) {
       _useState4 = _slicedToArray(_useState3, 2),
       errorMessage = _useState4[0],
       setErrorMessage = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      successMessage = _useState6[0],
+      setSuccessMessage = _useState6[1];
 
   function handleKeyDown(e) {
     if (e.key !== 'Enter') {
@@ -5415,7 +5418,8 @@ function App(props) {
     };
     axios__WEBPACK_IMPORTED_MODULE_2___default().post('/submit-referral', bodyParameters).then(function (response) {
       if (response.data.status == "ok") {
-        [], _readOnlyError("emails");
+        setEmails([]);
+        setSuccessMessage("Success sent invitations");
       } else {
         setErrorMessage(response.data.message);
       }
@@ -5493,12 +5497,15 @@ function App(props) {
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
               className: "row",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                 className: "col-sm-8 offset-sm-2",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
                   className: "text-danger",
                   children: errorMessage
-                })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                  className: "text-success",
+                  children: successMessage
+                })]
               })
             })]
           })]
