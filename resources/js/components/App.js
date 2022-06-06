@@ -1,9 +1,10 @@
 import {React, useState} from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 
-
-function App() {
+function App(props) {
     const [emails, setEmails] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
 
     function handleKeyDown(e) {
         if (e.key !== 'Enter') {
@@ -11,20 +12,50 @@ function App() {
         }
 
         const value = e.target.value;
-        if (! value.trim()) {
+        if (! value.trim() || emails.includes(value.trim())) {
+            e.target.value = '';
+            return;
+        }
+
+        if (emails.length >= 5) {
+            setErrorMessage("Only 5 or less invitations can be sent at once");
+            e.target.value = '';
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (! emailRegex.test(value) || value.length > 64) {
+            setErrorMessage("Please enter a valid email address");
             return;
         }
 
         setEmails([...emails, value]);
+        setErrorMessage("");
         e.target.value = '';
     }
 
     function removeEmails(index) {
         setEmails(emails.filter((email, i) => i !== index));
+
+        if (emails.length <= 5) {
+            setErrorMessage("");
+        }
     }
 
     function handleSubmit(e) {
+        const bodyParameters = {
+            "emails": emails
+        };
 
+        axios.post('/submit-referral', bodyParameters).then(
+            response => {
+                if (response.data.status == "ok") {
+                    emails = [];
+                } else {
+                    setErrorMessage(response.data.message);
+                }
+            }
+        )
     }
 
     return (
@@ -65,8 +96,8 @@ function App() {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="col-sm-6 offset-sm-2">
-                                    <span className="text-danger"></span>
+                                <div className="col-sm-8 offset-sm-2">
+                                    <span className="text-danger">{errorMessage}</span>
                                 </div>
                             </div>
                         </div>
@@ -80,7 +111,5 @@ function App() {
 export default App;
 
 if (document.getElementById('root')) {
-    const element = document.getElementById('root');
-    const token = element.dataset.accessToken;
-    ReactDOM.render(<App />, element);
+    ReactDOM.render(<App/>, document.getElementById('root'));
 }
