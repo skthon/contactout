@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use App\Traits\HasUUID;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Referral;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -54,6 +57,16 @@ class User extends Authenticatable
     protected $appends = [
         'referral_code',
     ];
+
+    /**
+     * Get all the referral invitations for this user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function referrals(): HasMany
+    {
+      return $this->hasMany(Referral::class, 'referrer_uuid', 'uuid');
+    }
 
     /**
      * Get the referral code of the user
