@@ -10271,3 +10271,46 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.emails-input-container {
+  border: 1px solid rgb(118, 118, 118);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3em;
+}
+
+.email-item .close {
+  height: 15px;
+  width: 15px;
+  background-color: rgb(48, 48, 48);
+  color: #fff;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 0.5em;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.emails-input {
+  flex-grow: 1;
+  padding: 0.5em 0;
+  border: none;
+  outline: none;
+}
+
+.email-item {
+  background-color: rgb(218, 216, 216);
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  border-radius: 20px;
+}
+
+@media screen and (max-width: 576px) {
+  .send-btn {
+    margin-top: 4px;
+  }
+}
