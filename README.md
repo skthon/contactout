@@ -1,5 +1,6 @@
 # Table of Contents
   - [Requirements & Installation](#requirements-installation)
+  - [Tests](#Tests)
   - [Coding Challenge](#coding-challenge)
 
 # Requirements & Installation
@@ -11,11 +12,11 @@
   - https://github.com/skthon/contactout
 - Clone the code repository
 ```
-gh repo clone skthon/contactou
+gh repo clone skthon/contactout
 ```
 - After cloning, run the composer command to install packages
 ```
-   composer install
+composer install
 ```
 - Install mysql and configure the database in .env 
 ```
@@ -29,6 +30,19 @@ DB_PASSWORD=<>
 - Run Migrations
 ```
 php artisan migrate
+```
+
+
+# Tests
+$ php artisan test
+```
+   PASS  Tests\Feature\SubmitReferralTest
+  ✓ submit referral returns an error if existing email is invited
+  ✓ submit referral returns an error if existing referred email is invited
+  ✓ submit referral is successful
+
+  Tests:  3 passed
+  Time:   1.68s
 ```
 
 # Coding Challenge
