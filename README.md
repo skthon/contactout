@@ -1,3 +1,50 @@
+# Table of Contents
+  - [Requirements & Installation](#requirements-installation)
+  - [Tests](#Tests)
+  - [Coding Challenge](#coding-challenge)
+
+# Requirements & Installation
+- PHP 7.4
+- Node v14.x
+- Composer 2.0+
+- Mysql 8.x
+- Repository link
+  - https://github.com/skthon/contactout
+- Clone the code repository
+```
+gh repo clone skthon/contactout
+```
+- After cloning, run the composer command to install packages
+```
+composer install
+```
+- Install mysql and configure the database in .env 
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=coding_challenge
+DB_USERNAME=<>
+DB_PASSWORD=<>
+```
+- Run Migrations
+```
+php artisan migrate
+```
+
+
+# Tests
+$ php artisan test
+```
+   PASS  Tests\Feature\SubmitReferralTest
+  ✓ submit referral returns an error if existing email is invited
+  ✓ submit referral returns an error if existing referred email is invited
+  ✓ submit referral is successful
+
+  Tests:  3 passed
+  Time:   1.68s
+```
+
 # Coding Challenge
 
 The main goal of this challenge is to get a sense of your coding style and choices.
@@ -47,4 +94,3 @@ It’s an extension that works right on top of LinkedIn.
   
 Here’s their invitation link again:  
 <referral_link>
-

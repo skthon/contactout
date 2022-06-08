@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+use App\Models\Referral;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +15,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $user = User::factory()->create([
+            'is_admin' => true,
+        ]);
+
+        $referrals = Referral::factory(100)
+            ->create()
+            ->each(function ($referral) use ($user) {
+                $referral->referrer()->associate($user);
+                $referral->save();
+            });
     }
 }
